@@ -1,0 +1,73 @@
+
+const input-data = [
+  {
+    url: "https://www.searchenginejournal.com/how-to-write-chatgpt-prompts/479324/",
+    title: "Writing Prompts For ChatGPT",
+    content: "A ChatGPT prompt is an instruction or discussion topic a user provides for the ChatGPT AI model to respond to.
+
+The prompt can be a question, statement, or any other stimulus intended to spark creativity, reflection, or engagement.
+
+Users can use the prompt to generate ideas, share their thoughts, or start a conversation.
+
+ChatGPT prompts are designed to be open-ended and can be customized based on the user’s preferences and interests."
+  },
+  {
+    url: "https://writesonic.com/blog/how-to-write-chatgpt-prompts/",
+    title: "How to write the perfect ChatGPT prompt",
+    content: "ChatGPT has become the way of the world. It is a source of answers for a wide range of topics, from work and leisure to relationships and travel. But ChatGPT can only give you relevant answers when you write a prompt well.
+
+A prompt is a command or an action sentence used to communicate with ChatGPT and other and other AI language models.
+
+This blog post will reveal our little secrets to crafting perfect ChatGPT prompts and becoming a master of this art. These tips come from our internal AI experts, who have extensive experience training AI language models."
+  },
+  
+{
+    url:"https://www.zdnet.com/article/how-to-write-better-chatgpt-prompts/",
+    title:"How to write better ChatGPT prompts",
+content:"Writing a ChatGPT prompt is more than just asking a one-sentence question. It often involves providing relevant background information to set the context of the query."
+},
+{
+    url:"https://www.wired.com/story/11-tips-better-chatgpt-prompts/",
+    title:"https://beebom.com/best-chatgpt-prompts/",
+    content:"[Insert Text] Summarize this entire text into 3 sentences where every word starts with the letter [Insert Letter]"
+},
+{
+    url:"https://www.innovationtraining.org/chatgpt-prompt-training-tips-guide/",
+    title:"ChatGPT TRaining Guide",
+    content:"1. Be specific about the topic and context you want the text to be about.
+
+2. Provide examples or templates of the desired output.
+
+3. Use language that is consistent with the desired tone and style of the text."
+}
+
+
+
+];
+
+
+const Practices = new Map();
+
+for (let i = 0; i < input-data.length; i++) {
+  const article = input-data[i];
+
+  
+  const bestPractices = extractBestPractices(article.content);
+
+  
+  for (const practice of bestPractices) {
+    if (Practices.has(practice)) {
+      Practices.get(practice).push(i);
+    } else {
+      Practices.set(practice, [i]);
+    }
+  }
+}
+
+
+const bestPracticesList = Array.from(Practices.entries())
+  .sort((a, b) => b[1].length - a[1].length)
+  .map(([practice, articles]) => ({
+    practice,
+    articles: articles.join(", ")
+  }));
